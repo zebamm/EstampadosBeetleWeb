@@ -381,7 +381,7 @@ p, li, a, span, label, th, td, b{
     }
 
     .container-process img{
-        display: none;
+        display: none !important;
     }
 
     /* CONTENIDO PRINCIPAL */
