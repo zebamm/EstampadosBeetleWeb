@@ -25,3 +25,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+//Script para un carusel en el banner del index
+
+document.addEventListener("DOMContentLoaded", () => {
+    const banner = document.querySelector(".banner");
+    const mobileVer = window.matchMedia("(max-width: 768px)").matches;
+
+    //TODO: mejorar la calidad de las imagenes
+    const banners = [
+        "imgs/banner.jpg",
+        "imgs/banner2.jpg",
+        "imgs/banner3.jpg"
+    ];
+    
+    const bannersMobile = [
+        "imgs/bannerMobile.png",
+        "imgs/bannerMobile2.jpg",
+        "imgs/bannerMobile3.jpg"
+    ];
+
+    const imagenes = mobileVer ? bannersMobile : banners;
+
+    let indice = 0;
+
+    function carousel() {
+        indice = (indice + 1) % imagenes.length;
+        banner.style.backgroundImage = `linear-gradient(to bottom, #00000031, #0000000a), url('${imagenes[indice]}')`;
+    }
+
+    setInterval(carousel, 5000);
+});

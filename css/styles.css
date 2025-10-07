@@ -21,7 +21,7 @@ h1, h2, h3 {
     margin-bottom: 10px;
 }
 
-p, li, a, span, label{
+p, li, a, span, label, th, td, b{
     font-family: 'Nunito', sans-serif;
     line-height: 1.6;
     font-size: 1rem;
@@ -49,6 +49,8 @@ p, li, a, span, label{
 
 .container-logo a{
     text-decoration: none;
+    text-align: center;
+    justify-content: center;
     color: var(--dark-color);
     display: flex;
     align-items: center;
@@ -95,34 +97,6 @@ p, li, a, span, label{
 .navbar-menu a:hover{
     color: var(--extra-color);
     background-color: var(--background-color);
-}
-
-@media (max-width: 768px){
-    .container-logo a{
-        justify-content: center;
-        text-align: center;
-    }
-    .navbar-menu{
-        display: none;
-        flex-direction: column;
-        background-color: var(--primary-color);
-        position: absolute;
-        top: -1rem;
-        right: 0;
-        width: 100%;
-        padding: 1rem;
-        text-align: center;
-    }
-
-    .navbar img{
-        display: block;
-        cursor: pointer;
-    }
-
-    .navbar-menu.active{
-        display: flex;
-    }
-
 }
 
 /* MAIN CONTENT*/
@@ -230,34 +204,34 @@ p, li, a, span, label{
 }
 
 .card-product p {
-  top: 40%; 
-  font-size: 2rem;
-  font-weight: bold;
+    top: 40%; 
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 .card-product span {
-  top: 60%;
-  font-size: 1.2rem;
+    top: 60%;
+    font-size: 1.2rem;
 }
 
 .card-product::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.26);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 2rem;
-  z-index: 1; 
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.26);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 2rem;
+    z-index: 1; 
 }
 
 .card-product:hover::before {
-  opacity: 1;
+    opacity: 1;
 }
 
 .card-product:hover p,
 .card-product:hover span {
-  opacity: 1;
+    opacity: 1;
 }
 
 .product-TazaCeramicaNacional{
@@ -273,7 +247,7 @@ p, li, a, span, label{
     background-image: url('../imgs/BotellaHomero.png');
     background-color: #fdf8eb;
     height: 50rem;
-    background-size: 80% 80%;
+    background-size: 80% 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -282,7 +256,7 @@ p, li, a, span, label{
     background-image: url('../imgs/botellaAluminio.png');
     background-color: #fdf8eb;
     height: 50rem;
-    background-size: 80% 80%;
+    background-size: 80% 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -291,6 +265,7 @@ p, li, a, span, label{
 
 .container-process{
     display: flex;
+    padding: 2rem;
     background-color: #f7e0a1;
     gap: 2rem;
 }
@@ -312,6 +287,7 @@ p, li, a, span, label{
 .container_new-products{
     background-color: var(--background-color);
     display: flex;
+    padding-bottom: 2rem;
     flex-direction: column;
     gap: 2rem;
 }
@@ -361,6 +337,63 @@ p, li, a, span, label{
     list-style: none;
 }
 
+/* RESPONSIVE */
+
+@media (max-width: 768px){
+
+    /* HEADER */
+    .container-logo a{
+        justify-content: center;
+        text-align: center;
+    }
+
+    .container-navbar{
+        padding: .5rem;
+    }
+
+    .navbar-menu{
+        display: none;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: -1rem;
+        right: 0;
+        width: 100%;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .navbar img{
+        display: block;
+        cursor: pointer;
+    }
+
+    .navbar-menu.active{
+        display: flex;
+    }
+
+    /* CONTENIDO PRINCIPAL */
+    /* BANNER*/
+
+    .banner{
+        background-image: 
+        linear-gradient(to bottom, #00000031, #0000000a),
+        url('../imgs/bannerMobile.png');
+    }
+
+    .content-banner{
+        width: 100%;
+    }
+
+    .content-banner h2{
+        font-size: 2rem;
+    }
+
+    .content-banner h3{
+        font-size: 1.2rem;
+    }
+}
+
 /* LISTADO TABLA */
 
 .container-table{
@@ -384,7 +417,7 @@ p, li, a, span, label{
 }
 
 .table th, td{
-    border: 1px solid #000000;
+    border: 2px solid var(--primary-color);
     padding: .5rem;
     text-align: center;
 }
@@ -414,7 +447,7 @@ p, li, a, span, label{
 .box-product{
     align-items: center;
     background-color: #fdf8eb;
-    border: 1px solid #000000;
+    border: 2px solid var(--primary-color);
     padding: 1rem;
     text-align: center;
     background-size: contain;
@@ -461,7 +494,12 @@ p, li, a, span, label{
 }
 
 .container-info p{
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
+}
+
+.container-info b{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .container-info a{
