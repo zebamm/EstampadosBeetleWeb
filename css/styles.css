@@ -380,6 +380,10 @@ p, li, a, span, label, th, td, b{
         flex-direction: column;
     }
 
+    .container-process img{
+        display: none;
+    }
+
     /* CONTENIDO PRINCIPAL */
     /* BANNER*/
 
@@ -536,7 +540,6 @@ p, li, a, span, label, th, td, b{
     }
 
     .container-productInfo img{
-        align-items: center;
         height: 50%;
         width: 50%;
     }
