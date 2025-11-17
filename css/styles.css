@@ -1,0 +1,688 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Quicksand:wght@600;700&display=swap');
+
+/* UTILIDADES */
+
+:root{
+--primary-color: #F4D35E;
+--secondary-color: #A68A64;
+--background-color: #FAF3E0;
+--extra-color: #E09F3E;
+--dark-color: #3C2F2F;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+p, li, a, span, label, th, td, b{
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.heading-1 {
+    font-size: 2rem;
+    text-align: center;
+    padding-top: 2rem;
+}
+
+/* HEADER */
+
+.container-logo{
+    background-color: var(--background-color);
+    height: 5.5rem;
+    width: 100%;
+}
+
+.container-logo img{
+    margin-left: 1rem;
+    width: 3rem;
+    height: 3rem;
+}
+
+.container-logo a{
+    text-decoration: none;
+    text-align: center;
+    justify-content: center;
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.container-logo h1{
+    font-size: 2rem;
+    padding-bottom: .5rem;
+}
+
+.container-navbar{
+    position: relative;
+    background-color: var(--primary-color);
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar img{
+    width: 1.5rem;
+}
+
+.navbar-hamburguer{
+    display: none;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.navbar-menu{
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar-menu li{
+    list-style: none;
+}
+
+.navbar-menu a{
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--dark-color);
+}
+
+.navbar-menu a:hover{
+    color: var(--extra-color);
+    background-color: var(--background-color);
+}
+
+.container-login{
+    display: flex;
+    align-items: center;
+    align-self: left;
+    gap: .5rem;
+    margin-right: 1rem;
+}
+
+.container-login a{
+    display: flex;
+    text-decoration: none;
+    color: var(--dark-color);
+    gap: .3rem;
+}
+
+.container-login a:hover{
+    color: var(--extra-color);
+}
+
+.container-userLogIn{
+    position: relative;
+    display: inline-block;
+}
+
+.userLogIn{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-weight: bold;
+}
+
+.user-menu{
+    display: none;
+    position: absolute;
+    right: 0;
+    background: var(--background-color);
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.user-menu li a{
+    display: block;
+    padding: 1rem 2rem;
+    white-space: nowrap;
+}
+
+.user-menu.active{
+    display: block;
+}
+
+/* MAIN CONTENT*/
+
+.main-content{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+}
+
+/* BANNER */
+
+.banner{
+    display: flex;
+    align-items: center;
+    background-image: 
+        linear-gradient(to bottom, #00000031, #0000000a),
+        url('../imgs/banner.jpg');
+    height: 50rem;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.content-banner {
+    align-items: center;
+    display: block;
+    background-color: #faf3e0e0;
+    width: 40%;
+    height: 40%;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 25%;
+}
+
+.content-banner h2{
+    color: var(--dark-color);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.content-banner h3{
+    color: var(--dark-color);
+    font-size: 1.4rem;
+    margin-left: 1rem;
+}
+
+.content-banner p{
+    color: var(--dark-color);
+    font-size: 1.1rem;
+}
+
+.content-banner a{
+    color: var(--dark-color);
+    display: inline-block;
+    padding: .8rem 1.7rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    background-color: var(--primary-color);
+}
+
+.content-banner a:hover{
+    background-color: #f5dc84;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+/* MAS VENDIDOS */
+
+.container_top-products{
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.container-products{
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 3rem;
+}
+
+.card-product{
+    position: relative;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    gap: 2rem;
+    overflow: hidden;
+}
+
+.card-product p, .card-product span{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3 ease;
+    z-index: 2;
+}
+
+.card-product p {
+    top: 40%; 
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.card-product span {
+    top: 60%;
+    font-size: 1.2rem;
+}
+
+.card-product::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.26);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 2rem;
+    z-index: 1; 
+}
+
+.card-product:hover::before {
+    opacity: 1;
+}
+
+.card-product:hover p,
+.card-product:hover span {
+    opacity: 1;
+}
+
+.product-TazaCeramicaNacional{
+    background-image: url('../imgs/TazaCeramicaNacional.png');
+    background-color: #fdf8eb;
+    height: 27rem;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.product-BotellaPlastico{
+    background-image: url('../imgs/BotellaHomero.png');
+    background-color: #fdf8eb;
+    height: 50rem;
+    background-size: 80% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.product-BotellaAluminio{
+    background-image: url('../imgs/botellaAluminio.png');
+    background-color: #fdf8eb;
+    height: 50rem;
+    background-size: 80% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* PROCESO */
+
+.container-process{
+    display: flex;
+    padding: 2rem;
+    background-color: #f7e0a1;
+    gap: 2rem;
+}
+
+.process{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.container-process img{
+    height: 30rem;
+    width: auto;
+}
+
+/* NUEVOS PRODUCTOS */
+
+.container_new-products{
+    background-color: var(--background-color);
+    display: flex;
+    padding-bottom: 2rem;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.product-TazaPlastico{
+    background-image: url('../imgs/tazaPlastico.png');
+    background-color: #fdf8eb;
+    height: 27rem;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.product-VasoCafe{
+    background-image: url('../imgs/vasoCafe.png');
+    background-color: #fdf8eb;
+    height: 34rem;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.product-MateChico{
+    background-image: url('../imgs/mateChico.png');
+    background-color: #fdf8eb;
+    height: 30rem;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* FOOTER */
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-color);
+    align-items: center;
+}
+
+.container-footer{
+    display: flex;
+    text-align: center;
+}
+
+.container-footer li{
+    list-style: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px){
+
+    /* HEADER */
+    .container-logo a{
+        justify-content: center;
+        text-align: center;
+    }
+
+    .container-navbar{
+        padding: .5rem;
+    }
+
+    .navbar-menu{
+        display: none;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: -1rem;
+        right: 0;
+        width: 100%;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .navbar img{
+        display: block;
+        cursor: pointer;
+    }
+
+    .navbar-menu.active{
+        display: flex;
+    }
+
+    .footer{
+        margin: 0;
+        padding: 0;
+    }
+    .container-footer{
+        flex-direction: column;
+    }
+
+    .container-process img{
+        display: none !important;
+    }
+
+    /* CONTENIDO PRINCIPAL */
+    /* BANNER*/
+
+    .banner{
+        background-image: 
+        linear-gradient(to bottom, #00000031, #0000000a),
+        url('../imgs/bannerMobile.png');
+    }
+
+    .content-banner{
+        width: 100%;
+    }
+
+    .content-banner h2{
+        font-size: 2rem;
+    }
+
+    .content-banner h3{
+        font-size: 1.2rem;
+    }
+}
+
+/* LISTADO TABLA */
+
+.container-table{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.table{
+    width: 95%;
+    border-collapse: collapse;
+    padding: 2rem;
+    margin: 2.5%;
+}
+
+.table th:first-child{
+    width: 20%;
+}
+
+.table th:last-child{
+    width: 10%;
+}
+
+.table th, td{
+    border: 2px solid var(--primary-color);
+    padding: .5rem;
+    text-align: center;
+}
+
+.table-img{
+    height: 15rem;
+    width: auto;
+    object-fit: cover;
+}
+
+/* LISTADO BOX */
+
+.boxList{
+    width: 97%;
+    display: flex;
+    flex-direction: column;
+    margin: 1.5%;
+}
+
+.container-box{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    gap: 3rem;
+    background-size: contain;
+}
+
+.box-product{
+    align-items: center;
+    background-color: #fdf8eb;
+    border: 2px solid var(--primary-color);
+    padding: 1rem;
+    text-align: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.box-product img{
+    height: 30rem;
+    width: auto;
+    object-fit: contain;
+}
+
+/* PRODUCTO */
+
+.container-productInfo{
+    display: flex;
+    justify-content: center;
+    background-color: #fff1cf;
+    border-radius: 5%;
+    padding: 2rem;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.container-productInfo img{
+    height: 30rem;
+    width: auto;
+    background-color: #fcf4e1;
+    border-radius: 4%;
+}
+
+.container-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 2rem;
+}
+
+.container-info h2{
+    font-size: 2.2rem;
+    margin-bottom: 7rem;
+}
+
+.container-info p{
+    margin-bottom: 2rem;
+}
+
+.container-info b{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.container-info a{
+    display: inline-block;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--dark-color);
+    background-color: var(--primary-color);
+    padding: .7rem 1.5rem;
+    border-radius: 2rem;
+    margin-left: 1rem;
+    width: 4rem;
+}
+
+.container-info a:hover{
+    background-color: #f5dc84;
+    color: var(--extra-color);
+}
+
+@media(max-width: 768px){
+    .container-productInfo{
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .container-productInfo img{
+        height: 50%;
+        width: 50%;
+    }
+
+    .container-productInfo h2{
+        margin-bottom: 2rem;
+    }
+
+    .container-info{
+        text-align: center;
+        align-items: center;
+    }
+}
+
+/* FORMULARIO */
+
+.container-form {
+    width: 30%;
+    margin: 2rem auto;
+    background-color: #fff1cf;
+    padding: 2rem;
+    border-radius: 1rem;
+    padding: 0;
+}
+
+.container-form h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+}
+
+.container-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.container-form label {
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+.container-form input {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.container-form button {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #50394c;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.container-form button:hover {
+    background-color: #7a5471;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.login-form input{
+    padding: .8rem;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+    font-size: 1rem;
+}
+
+/* CONTACTO */
+
+.container-contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #faf3e0e0;
+    width: 40%;
+}
