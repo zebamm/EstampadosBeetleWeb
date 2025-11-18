@@ -1,5 +1,8 @@
 <?php
 session_start();
+include "includes/db_connection.php";
+$sql = "SELECT * FROM productos WHERE estado = 1";
+$result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,47 +63,21 @@ session_start();
                         <tr>
                             <th>Imagen</th>
                             <th>Producto</th>
+                            <th>Categoria</th>
                             <th>Precio</th>
                             <th>Información</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php while($rows = $result->fetch_assoc()): ?>
                         <tr>
-                            <td><img class="table-img" src="imgs/TazaCeramicaNacional.png" alt="Taza De Ceramica"></td>
-                            <td>Taza Cerámica Nacional</td>
-                            <td>$8000</td>
-                            <td><a href="producto.html?id=1">Ver más</a></td>
+                            <td><img class="table-img" src="<?php echo $rows['imagen']; ?>" alt="<?php echo $rows['nombre']; ?>"></td>
+                            <td><?php echo $rows['nombre']; ?></td>
+                            <td><?php echo $rows['categoria']; ?></td>
+                            <td>$<?php echo $rows['precio']; ?></td>
+                            <td><a href="producto.php?id=<?php echo $rows['id']; ?>">Ver más</a></td>
                         </tr>
-                        <tr>
-                            <td><img class="table-img" src="imgs/BotellaHomero.png" alt="Botella de Plastico"></td>
-                            <td>Botella de Plastico 500cc</td>
-                            <td>$16000</td>
-                            <td><a href="producto.html?id=2">Ver más</a></td>
-                        </tr>
-                        <tr>
-                            <td><img class="table-img" src="imgs/botellaAluminio.png" alt="Botella de Aluminio"></td>
-                            <td>Botella de Aluminio 500cc</td>
-                            <td>$18000</td>
-                            <td><a href="producto.html?id=3">Ver más</a></td>
-                        </tr>
-                        <tr>
-                            <td><img class="table-img" src="imgs/tazaPlastico.png" alt="Taza De Plastico"></td>
-                            <td>Taza De Plastico</td>
-                            <td>$4000</td>
-                            <td><a href="producto.html?id=4">Ver más</a></td>
-                        </tr>
-                        <tr>
-                            <td><img class="table-img" src="imgs/vasoCafe.png" alt="Vaso de Cafe"></td>
-                            <td>Vaso de Cafe</td>
-                            <td>$8000</td>
-                            <td><a href="producto.html?id=5">Ver más</a></td>
-                        </tr>
-                        <tr>
-                            <td><img class="table-img" src="imgs/mateChico.png" alt="Mate Chico de Ceramica"></td>
-                            <td>Mate Chico de Ceramica</td>
-                            <td>$9000</td>
-                            <td><a href="producto.html?id=6">Ver más</a></td>
-                        </tr>
+                        <?php endwhile; ?>
                     </tbody>
                 </table>
             </div>

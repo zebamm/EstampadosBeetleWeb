@@ -1,17 +1,11 @@
-<?php
-session_start();
-include "includes/db_connection.php";
-$sql = "SELECT * FROM productos WHERE estado = 1";
-$result = $conn->query($sql);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estampados Beetle - Productos</title>
-    <link rel="icon" type="image/png" href="imgs/EstampadosBeetle.png">
+    <title>Estampados Beetle - Página no encontrada</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="imgs/EstampadosBeetle.png">
 </head>
 <body>
     <header class="header">
@@ -52,21 +46,10 @@ $result = $conn->query($sql);
             </nav>
         </div>
     </header>
-
     <main class="main-content">
-        <div class="boxList">
-            <h1 class="heading-1">Nuestros Productos</h1>
-            <a href="listado_tabla.php">Mostrar Listado Tabla</a>
-            <div class="container-box">
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <div class="box-product">
-                        <img src="<?php echo $row['imagen']; ?>" alt="<?php echo $row['nombre']; ?>">
-                        <h2><?php echo $row['nombre']; ?></h2>
-                        <p><strong>$<?php echo $row['precio']; ?></strong></p>
-                        <a href="producto.php?id=<?php echo $row['id']; ?>">Ver más</a>
-                    </div>
-                <?php endwhile; ?>
-            </div>
+        <div class="container-error">
+                <h2>Página no encontrada</h2>
+                <p>Parece ser que este enlace no existe más</p>
         </div>
     </main>
 
@@ -82,7 +65,5 @@ $result = $conn->query($sql);
             <p>Estampados Beetle &copy; 2025</p>
         </div>
     </footer>
-
-    <script src="scripts/scripts.js"></script>
 </body>
 </html>

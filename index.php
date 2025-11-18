@@ -1,5 +1,10 @@
 <?php
 session_start();
+include "includes/db_connection.php";
+$sql = "SELECT * FROM productos WHERE destacado = 1;";
+$resultTopProd = $conn->query($sql);
+$sql = "SELECT * FROM productos WHERE estado = 1 AND stock > 0 ORDER BY creado DESC LIMIT 3;";
+$resultNewProd = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,26 +68,15 @@ session_start();
         <section class="container_top-products">
             <h2 class="heading-1">Productos Destacados</h2>
             <div class="container-products">
-                <a href="producto.html?id=1">
-                    <div class="card-product product-TazaCeramicaNacional">
-                        <p>Taza Cerámica Nacional</p>
-                        <span>Ver más</span>
-                    </div>
-                </a>
-
-                <a href="producto.html?id=2">
-                    <div class="card-product product-BotellaPlastico">
-                        <p>Botella de Plastico 500cc</p>
-                        <span>Ver más</span>
-                    </div>
-                </a>
-
-                <a href="producto.html?id=3">
-                    <div class="card-product product-BotellaAluminio">
-                        <p>Botella de Aluminio 500cc</p>
-                        <span>Ver más</span>
-                    </div>
-                </a>
+                <?php while ($rows = $resultTopProd->fetch_assoc()): ?>
+                    <a href="producto.php?id=<?php echo $rows['id']; ?>">
+                        <div class="card-product">
+                            <img src="<?php echo $rows['imagen']; ?>" alt="<?php echo $rows['nombre']; ?>">
+                            <p><?php echo $rows['nombre']; ?></p>
+                            <span>Ver más</span>
+                        </div>
+                    </a>
+                <?php endwhile; ?>
             </div>
         </section>
 
@@ -97,26 +91,15 @@ session_start();
         <section class="container_new-products">
             <h2 class="heading-1">Nuevos Productos</h2>
             <div class="container-products">
-                <a href="producto.html?id=4">
-                    <div class="card-product product-TazaPlastico">
-                        <p>Taza de Plastico</p>
-                        <span>Ver más</span>
-                    </div>
-                </a>
-
-                <a href="producto.html?id=5">
-                    <div class="card-product product-VasoCafe">
-                        <p>Vaso para café de Cerámica</p>
-                        <span>Ver más</span>
-                    </div>
-                </a>
-
-                <a href="producto.html?id=6">
-                    <div class="card-product product-MateChico">
-                        <p>Mate Chico</p>
-                        <span>Ver más</span>
-                    </div>
-                </a>
+                <?php while ($rows = $resultNewProd->fetch_assoc()): ?>
+                    <a href="producto.php?id=<?php echo $rows['id']; ?>">
+                        <div class="card-product">
+                            <img src="<?php echo $rows['imagen']; ?>" alt="<?php echo $rows['nombre']; ?>">
+                            <p><?php echo $rows['nombre']; ?></p>
+                            <span>Ver más</span>
+                        </div>
+                    </a>
+                <?php endwhile; ?>
             </div>
         </section>
     </main>

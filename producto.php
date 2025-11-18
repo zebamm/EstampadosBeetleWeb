@@ -1,5 +1,15 @@
 <?php
 session_start();
+include "includes/db_connection.php";
+$sql = "SELECT * FROM productos WHERE id = ? AND estado = 1";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $_GET["id"]);
+$stmt->execute();
+$result = $stmt->get_result();
+$producto = $result->fetch_assoc();
+if(!isset($producto)){
+    header("Location: error.php");
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,11 +61,11 @@ session_start();
 
     <main class="main-content">
         <div class="container-productInfo">
-            <img src="imgs/TazaCeramicaNacional.png" alt="Taza Ceramica Nacional">
+            <img src="<?php echo $producto['imagen']; ?>" alt="<?php echo $producto['nombre']; ?>">
             <div class="container-info">
-                <h2>Taza de Ceramica Nacional</h2>
-                <p>Dimensiones: 9cm de alto por 8cm de diametro.</p>
-                <b>$8000</b>
+                <h2><?php echo $producto['nombre']; ?></h2>
+                <p><?php echo $producto['descripcion']; ?></p>
+                <b>$<?php echo $producto['precio']; ?></b>
                 <a href="comprarForm.php">Comprar</a>
             </div>
         </div>
@@ -75,6 +85,5 @@ session_start();
     </footer>
 
     <script src="scripts/scripts.js"></script>
-    <script src="scripts/productos.js"></script>
 </body>
 </html>

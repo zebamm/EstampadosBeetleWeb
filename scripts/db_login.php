@@ -20,6 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
         if(password_verify($clave, $usuario["contraseña"])){
             $_SESSION["usuario_id"] = $usuario["id"];
             $_SESSION["usuario_nombre"] = $usuario["usuario"];
+            $_SESSION["usuario_rol"] = intval($usuario["rol"]);
+
+            if($_SESSION["usuario_rol"] === 1){
+                header("Location: ../admin_panel.php");
+                exit();
+            }
 
             header("Location: ../index.php");
             exit;
