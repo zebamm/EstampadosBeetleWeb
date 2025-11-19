@@ -80,8 +80,8 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'sublimadosbeetle@gmail.com';
-    $mail->Password = 'pbzu uivs fuut ihky';
+    $mail->Username = '';
+    $mail->Password = '';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
@@ -103,8 +103,8 @@ try {
     $mail2->isSMTP();
     $mail2->Host = 'smtp.gmail.com';
     $mail2->SMTPAuth = true;
-    $mail2->Username = 'sublimadosbeetle@gmail.com';
-    $mail2->Password = 'pbzu uivs fuut ihky';
+    $mail2->Username = '';
+    $mail2->Password = '';
     $mail2->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail2->Port = 587;
 
