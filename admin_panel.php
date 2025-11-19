@@ -53,6 +53,14 @@ if(!isset($_SESSION['usuario_id']) || $_SESSION["usuario_rol"] != 1){
                 <li><a href="admin_newProduct.php">Agregar un Nuevo Producto</a></li>
             </ul>
         </div>
+        <div class="container-usersAdmin">
+            <h2>Gestion de Correos</h2>
+            <ul class="adminList">
+                <li><a href="admin_manageList.php?id=3">Administrar Correos</a></li>
+                <li><a href="#">Historial de correos enviados</a></li>
+                <li><a href="#">Enviar Correo</a></li>
+            </ul>
+        </div>
     </main>
 <script src="scripts/scripts.js"></script>
 </body>

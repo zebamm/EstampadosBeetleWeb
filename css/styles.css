@@ -3,11 +3,11 @@
 /* UTILIDADES */
 
 :root{
---primary-color: #F4D35E;
---secondary-color: #A68A64;
---background-color: #FAF3E0;
---extra-color: #E09F3E;
---dark-color: #3C2F2F;
+    --primary-color: #F4D35E;
+    --secondary-color: #A68A64;
+    --background-color: #FAF3E0;
+    --extra-color: #E09F3E;
+    --dark-color: #3C2F2F;
 }
 
 body{
@@ -182,8 +182,8 @@ p, li, a, span, label, th, td, b{
     display: flex;
     align-items: center;
     background-image: 
-        linear-gradient(to bottom, #00000031, #0000000a),
-        url('../imgs/banner.jpg');
+    linear-gradient(to bottom, #00000031, #0000000a),
+    url('../imgs/banner.jpg');
     height: 50rem;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -561,16 +561,16 @@ p, li, a, span, label, th, td, b{
         align-items: center;
         padding: 0;
     }
-
+    
     .container-productInfo img{
         height: 50%;
         width: 50%;
     }
-
+    
     .container-productInfo h2{
         margin-bottom: 2rem;
     }
-
+    
     .container-info{
         text-align: center;
         align-items: center;
@@ -797,11 +797,11 @@ p, li, a, span, label, th, td, b{
     margin: 3rem auto;
     padding: 2rem;
     border-radius: 1rem;
-
+    
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-
+    
     box-shadow: 0 0 25px rgba(0,0,0,0.15);
 }
 
@@ -833,13 +833,13 @@ p, li, a, span, label, th, td, b{
     width: 100%;
     padding: 0.8rem;
     border-radius: 0.5rem;
-
+    
     border: 1px solid rgba(255,255,255,0.25);
     background: rgba(255,255,255,0.1);
-
+    
     color: var(--dark-color);
     font-size: 0.95rem;
-
+    
     transition: 0.2s;
 }
 
@@ -869,13 +869,13 @@ p, li, a, span, label, th, td, b{
     padding: 0.9rem;
     font-size: 1rem;
     font-weight: bold;
-
+    
     background: #3498db;
     color: var(--dark-color);
-
+    
     border: none;
     border-radius: 0.5rem;
-
+    
     cursor: pointer;
     transition: 0.25s;
 }
@@ -887,4 +887,53 @@ p, li, a, span, label, th, td, b{
 
 .editForm-container button:active {
     transform: translateY(0);
+}
+
+/* PEDIDOS */
+
+.pedidos-container {
+    width: 90%;
+    margin: 50px auto;
+}
+
+.pedido-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 18px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.pedido-card img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.pedido-info {
+    flex: 1;
+}
+
+.estado {
+    padding: 6px 12px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.pendiente { background: #ff9f1c; }
+.confirmado { background: #2ec4b6; }
+.cancelado { background: #e71d36; }
+
+.pedido-card h3 {
+    margin: 0;
+}
+
+.pedido-card small {
+    color: #666;
 }

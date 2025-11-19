@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2025 a las 21:47:16
+-- Tiempo de generación: 19-11-2025 a las 20:33:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -24,30 +24,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalles_pedido`
+-- Estructura de tabla para la tabla `emails_predefinidos`
 --
 
-CREATE TABLE `detalles_pedido` (
+CREATE TABLE `emails_predefinidos` (
   `id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `precio_ind` int(11) DEFAULT NULL,
-  `cantidad` int(11) DEFAULT NULL
+  `codigo` varchar(50) NOT NULL,
+  `asunto` varchar(255) NOT NULL,
+  `cuerpo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pedido`
+-- Estructura de tabla para la tabla `pedidos`
 --
 
-CREATE TABLE `pedido` (
+CREATE TABLE `pedidos` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `subtotal` int(11) DEFAULT NULL,
-  `estado` int(11) DEFAULT 0,
-  `creado` timestamp NOT NULL DEFAULT current_timestamp()
+  `usuario_id` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
+  `provincia` varchar(100) NOT NULL,
+  `ciudad` varchar(100) NOT NULL,
+  `direccion` varchar(255) NOT NULL,
+  `instrucciones` text DEFAULT NULL,
+  `descripcion` text NOT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
+  `estado` enum('pendiente','confirmado','cancelado') DEFAULT 'pendiente',
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `usuario_id`, `producto_id`, `provincia`, `ciudad`, `direccion`, `instrucciones`, `descripcion`, `imagen`, `estado`, `fecha`) VALUES
+(1, 4, 1, 'Misiones', 'Posadas', 'Calle Falsa 213', 'Casa de porton verde', 'Quiero la imagen centrada en la taza', '1763570755_gatosYinYan.jpg', 'confirmado', '2025-11-19 16:45:55'),
+(3, 4, 3, 'Misiones', 'Misiones', 'Calle Falsa 123', 'Casa de porton verde', 'Quiero la estampa en medio de la botella', '1763571251_imperialesLogo (2).png', 'cancelado', '2025-11-19 16:54:11');
 
 -- --------------------------------------------------------
 
@@ -102,26 +115,27 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `email`, `usuario`, `contraseña`, `rol`, `estado`, `creado`) VALUES
 (2, 'sebamatiasmonzon@gmail.com', 'Sebastian Monzon', '$2y$10$ac.uB9ZuSA8IJhJnhZlFhOoGHyiL5TEtdO8klbBlV4vfCTV08XSZm', 1, 1, '2025-11-16 19:33:18'),
-(3, 'antonellagxomez00@gmail.com', 'antonella', '$2y$10$we7peo/oBcXsnbf/oFThzuDJCyorxNwqcoJxcgDKKU73Su.jsWcYa', 0, 1, '2025-11-17 18:55:29');
+(3, 'antonellagxomez00@gmail.com', 'antonella', '$2y$10$we7peo/oBcXsnbf/oFThzuDJCyorxNwqcoJxcgDKKU73Su.jsWcYa', 0, 1, '2025-11-17 18:55:29'),
+(4, 'zebamonzon@hotmail.com', 'Bobolo', '$2y$10$SfHlSL8QdtQkaMza9YOFbeUDMnp4es8uB8XIpDkQfwSoWzFpoETg6', 0, 1, '2025-11-19 16:22:10');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `detalles_pedido`
+-- Indices de la tabla `emails_predefinidos`
 --
-ALTER TABLE `detalles_pedido`
+ALTER TABLE `emails_predefinidos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD UNIQUE KEY `codigo` (`codigo`);
 
 --
--- Indices de la tabla `pedido`
+-- Indices de la tabla `pedidos`
 --
-ALTER TABLE `pedido`
+ALTER TABLE `pedidos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `usuario_id` (`usuario_id`),
+  ADD KEY `producto_id` (`producto_id`);
 
 --
 -- Indices de la tabla `productos`
@@ -142,16 +156,16 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de la tabla `detalles_pedido`
+-- AUTO_INCREMENT de la tabla `emails_predefinidos`
 --
-ALTER TABLE `detalles_pedido`
+ALTER TABLE `emails_predefinidos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `pedido`
+-- AUTO_INCREMENT de la tabla `pedidos`
 --
-ALTER TABLE `pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `pedidos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -163,24 +177,18 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `detalles_pedido`
+-- Filtros para la tabla `pedidos`
 --
-ALTER TABLE `detalles_pedido`
-  ADD CONSTRAINT `detalles_pedido_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `pedido` (`id`),
-  ADD CONSTRAINT `detalles_pedido_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `productos` (`id`);
-
---
--- Filtros para la tabla `pedido`
---
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `user_pedido` FOREIGN KEY (`user_id`) REFERENCES `usuarios` (`id`);
+ALTER TABLE `pedidos`
+  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

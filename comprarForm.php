@@ -1,5 +1,14 @@
 <?php
 session_start();
+include "includes/db_connection.php";
+
+//Verificamos que el usuario este logueado
+if(!isset($_SESSION["usuario_id"])){
+    header("Location: login.php");
+}
+
+$sql = "SELECT id, nombre FROM productos WHERE estado = 1 AND stock > 0";
+$result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,25 +61,63 @@ session_start();
 
     <main class="main-content">
         <div class="container-form">
-        <h2>Formulario de Compra</h2>
-        <form  id="formCompra" action="#" method="post">
-            
-            <label for="nombre">Nombre completo:</label>
-            <input type="text" id="nombre" name="nombre" required>
+        <h2>Formulario de Pedido de Compra</h2>
+        <form  id="formCompra" action="scripts/procesarCompra.php" enctype="multipart/form-data" method="POST">
+            <label for="provincia">Provincia:</label>
+            <select id="provincia" name="provincia" required>
+                <option value="">Seleccionar provincia</option>
+                <option value="Buenos Aires">Buenos Aires</option>
+                <option value="CABA">CABA</option>
+                <option value="Catamarca">Catamarca</option>
+                <option value="Chaco">Chaco</option>
+                <option value="Chubut">Chubut</option>
+                <option value="Córdoba">Córdoba</option>
+                <option value="Corrientes">Corrientes</option>
+                <option value="Entre Ríos">Entre Ríos</option>
+                <option value="Formosa">Formosa</option>
+                <option value="Jujuy">Jujuy</option>
+                <option value="La Pampa">La Pampa</option>
+                <option value="La Rioja">La Rioja</option>
+                <option value="Mendoza">Mendoza</option>
+                <option value="Misiones">Misiones</option>
+                <option value="Neuquén">Neuquén</option>
+                <option value="Río Negro">Río Negro</option>
+                <option value="Salta">Salta</option>
+                <option value="San Juan">San Juan</option>
+                <option value="San Luis">San Luis</option>
+                <option value="Santa Cruz">Santa Cruz</option>
+                <option value="Santa Fe">Santa Fe</option>
+                <option value="Santiago del Estero">Santiago del Estero</option>
+                <option value="Tierra del Fuego">Tierra del Fuego</option>
+                <option value="Tucumán">Tucumán</option>
+            </select>
 
-            <label for="email">Correo electrónico:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="ciudad">Ciudad / Localidad:</label>
+            <input type="text" id="ciudad" name="ciudad" placeholder="Ej: Rosario, Godoy Cruz, Quilmes" required>
 
             <label for="direccion">Dirección de entrega:</label>
             <input type="text" id="direccion" name="direccion" required>
 
+            <label for="instrucciones">Instrucciones de entrega:</label>
+            <textarea name="instrucciones" id="instrucciones" rows="4" placeholder="Ej: Casa de portón verde oscuro / Edificio X apartamento 31"></textarea>
+
             <label for="producto">Producto:</label>
-            <input type="text" id="producto" name="producto" value="Taza de Cerámica Nacional" readonly>
+            <select id="producto" name="producto" required>
+                <option value=""><?php echo $_GET["id"]; ?></option>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <option value="<?php echo $row['id']; ?>">
+                        <?php echo $row['nombre']; ?>
+                    </option>
+                <?php endwhile; ?>
+            </select>
 
-            <label for="cantidad">Cantidad:</label>
-            <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+            <label for="cantidad">Estampado:</label>
+            <input type="file" name="imagen" accept="image/jpeg, image/png, image/jpg">
 
-            <button type="submit">Confirmar Compra</button>
+            <label for="descripcion">Explicá cómo querés que vaya el estampado:</label>
+            <textarea id="descripcion" name="descripcion" rows="4" placeholder="Ej: Quiero la imagen centrada, en tamaño grande, ocupando casi toda la taza." required></textarea>
+
+            <button type="submit">Confirmar Pedido</button>
         </form>
         </div>
     </main>
